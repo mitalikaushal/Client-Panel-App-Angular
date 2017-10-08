@@ -33,7 +33,8 @@ const appRoutes: Routes = [
   {path: 'login', component:LoginComponent},
   {path: 'client-details', component:ClientDetailsComponent},
   {path: 'add-client', component:AddClientComponent},
-  {path: 'client/:id' , component:ClientDetailsComponent} //we need particular id of the client whose details we have to see so we will put"client/:id"
+  {path: 'client/:id' , component:ClientDetailsComponent}, //we need particular id of the client whose details we have to see so we will put"client/:id"
+  {path: 'edit-client/:id' , component:EditClientComponent}
 ]
 
 // Configuring the firebase authuntication
