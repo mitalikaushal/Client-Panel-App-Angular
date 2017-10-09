@@ -27,10 +27,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { RegisterGuard } from './guards/register.guard';
+import { SettingsService } from './services/settings.service';
 // Creating Routes
 const appRoutes: Routes = [
   {path: '', component:DashboardComponent, canActivate:[AuthGuard]},
-  {path: 'register', component:RegisterComponent},
+  {path: 'register', component:RegisterComponent, canActivate:[RegisterGuard]},
   {path: 'login', component:LoginComponent},
   {path: 'client-details', component:ClientDetailsComponent},
   {path: 'add-client', component:AddClientComponent, canActivate:[AuthGuard]},
@@ -74,7 +76,9 @@ export const firebaseConfig = {
     AngularFireDatabase,
     ClientService,
     AuthService,
-    AuthGuard 
+    AuthGuard,
+    SettingsService,
+    RegisterGuard
   ],
   bootstrap: [AppComponent]
 })
