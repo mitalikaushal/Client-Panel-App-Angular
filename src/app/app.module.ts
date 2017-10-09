@@ -26,16 +26,16 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 // Service imports
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
-
+import { AuthGuard } from './guards/auth.guard';
 // Creating Routes
 const appRoutes: Routes = [
-  {path: '', component:DashboardComponent},
+  {path: '', component:DashboardComponent, canActivate:[AuthGuard]},
   {path: 'register', component:RegisterComponent},
   {path: 'login', component:LoginComponent},
   {path: 'client-details', component:ClientDetailsComponent},
-  {path: 'add-client', component:AddClientComponent},
-  {path: 'client/:id' , component:ClientDetailsComponent}, //we need particular id of the client whose details we have to see so we will put"client/:id"
-  {path: 'edit-client/:id' , component:EditClientComponent}
+  {path: 'add-client', component:AddClientComponent, canActivate:[AuthGuard]},
+  {path: 'client/:id' , component:ClientDetailsComponent, canActivate:[AuthGuard]}, //we need particular id of the client whose details we have to see so we will put"client/:id"
+  {path: 'edit-client/:id' , component:EditClientComponent, canActivate:[AuthGuard]}
 ]
 
 // Configuring the firebase authuntication
@@ -73,7 +73,8 @@ export const firebaseConfig = {
     AngularFireAuth,
     AngularFireDatabase,
     ClientService,
-    AuthService
+    AuthService,
+    AuthGuard 
   ],
   bootstrap: [AppComponent]
 })
